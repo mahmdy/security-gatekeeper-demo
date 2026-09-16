@@ -5,6 +5,7 @@ FROM python:3-slim
 WORKDIR /app
 COPY . .
 RUN pip install -r requirements.txt
-# ENV API_KEY="super-secret-key"
+RUN useradd --create-home appuser && \
+    chown -R appuser:appuser /app
 USER appuser
 CMD ["python", "app.py"]
